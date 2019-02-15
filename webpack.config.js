@@ -7,15 +7,19 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const DotEnv = require('dotenv-webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const glob = require('glob');
+
+const entryFiles = glob
+  .sync('./src/**/*.js')
+  .reduce(
+    (entries, entryFile) => Object.assign(entries, { [path.parse(entryFile).name]: entryFile }),
+    {}
+  );
 
 module.exports = {
   entry: {
-    app: './src/app.js',
+    ...entryFiles,
     vendor: ['angular']
-  },
-  output: {
-    filename: 'app.bundle.js',
-    path: path.resolve(__dirname, '/js')
   },
   target: 'web',
   mode: 'development',

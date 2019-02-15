@@ -1,11 +1,11 @@
 const angular = require('angular');
-require('angular-route');
+require('angular-ui-router');
 require('angular-local-storage');
 require('angular-translate');
 
 angular.module(
   'app-bootstrap', [
-    'ngRoute',
+    'ui.router',
     'LocalStorageModule',
     'pascalprecht.translate'
   ]
