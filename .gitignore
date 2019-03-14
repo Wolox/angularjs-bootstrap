@@ -6,7 +6,6 @@ npm-debug.log
 
 # compiled code folder
 build
-dist
 
 # aws keys file
 config/aws.js

@@ -21,6 +21,9 @@ module.exports = {
     ...entryFiles,
     vendor: ['angular']
   },
+  output: {
+    path: path.resolve(__dirname, 'build')
+  },
   target: 'web',
   mode: 'development',
   devServer: {
