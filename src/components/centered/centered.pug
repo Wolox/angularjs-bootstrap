@@ -3,14 +3,13 @@
   h1.title
     | {{ $ctrl.title }}
 .example
-  p
-    span
-      | This is {{ $ctrl.name }}. You can go to
-    a.link(ui-sref='component1')
-      | component 1
-    | or
-    a.link(ui-sref='component2')
-      | component 2
-    | using
-    a.link(href='https://ui-router.github.io/ng1/' target='_blank')
-      | ui-router
+  span
+    | This is {{ $ctrl.name }}. You can go to
+  a.link(ui-sref='component1')
+    | component 1
+  | or
+  a.link(ui-sref='component2')
+    | component 2
+  | using
+  a.link(href='https://ui-router.github.io/ng1/' target='_blank')
+    | ui-router
