@@ -3,7 +3,9 @@ angular.module('app-bootstrap').config(['$stateProvider', '$urlRouterProvider',
     $stateProvider
       .state('home', {
         url: '/',
-        template: require('./components/centered/centered.pug')
+        template: require('./components/centered/centered.pug'),
+        controller: 'centeredController',
+        controllerAs: '$ctrl'
       }).state('component1',
       {
         url: '/component1',
