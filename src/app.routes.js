@@ -3,21 +3,15 @@ angular.module('app-bootstrap').config(['$stateProvider', '$urlRouterProvider',
     $stateProvider
       .state('home', {
         url: '/',
-        template: require('./components/centered/centered.pug'),
-        controller: 'centeredController',
-        controllerAs: '$ctrl'
+        component: 'centered'
       }).state('component1',
       {
         url: '/component1',
-        template: require('./components/component1/component1.pug'),
-        controller: 'Component1Controller',
-        controllerAs: 'comp1Ctrl'
+        component: 'component1'
       }).state('component2',
       {
         url: '/component2',
-        template: require('./components/component2/component2.pug'),
-        controller: 'Component2Controller',
-        controllerAs: 'Component2Controller'
+        component: 'component2'
       });
     $urlRouterProvider.otherwise('/');
   }
