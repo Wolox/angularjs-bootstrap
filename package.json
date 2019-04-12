@@ -15,7 +15,8 @@
     "code-quality-json-report": "cr -o code-quality-report/stats.json -f json -x build/js/vendor build/js",
     "style-lint": "find ./src -name \\**.scss | xargs ./node_modules/.bin/stylelint --config .stylelintrc --syntax scss",
     "reports": "npm run code-quality-html-report && npm run code-quality-json-report",
-    "precommit": "npm run style-lint"
+    "precommit": "npm run style-lint",
+    "build": "webpack --config webpack.config.js"
   },
   "cacheDirectories": [
     "node_modules"
