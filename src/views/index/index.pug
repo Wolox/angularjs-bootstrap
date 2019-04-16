@@ -1,0 +1,13 @@
+doctype html
+html(lang='en')
+  head
+    title Frontend Bootstrap!
+    meta(charset='UTF-8')
+    link(rel='preload' href='styles.index.css' as='style')
+    link(rel="stylesheet" href='styles.index.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+  body(ng-app='app-bootstrap')
+    i.fa.fa-heart(aria-hidden='true')
+    ui-view
+    // inject:js
+    // endinject

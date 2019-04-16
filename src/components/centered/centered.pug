@@ -1,0 +1,15 @@
+.page
+  img.logo(ng-src='{{$ctrl.logo}}' alt='logo')
+  h1.title
+    | {{ $ctrl.title }}
+.example
+  span
+    | This is {{ $ctrl.name }}. You can go to
+  a.link(ui-sref='component1')
+    | component 1
+  | or
+  a.link(ui-sref='component2')
+    | component 2
+  | using
+  a.link(href='https://ui-router.github.io/ng1/' target='_blank')
+    | ui-router
