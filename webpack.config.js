@@ -1,5 +1,3 @@
-'use strict';
-
 const webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -19,7 +17,8 @@ const entryFiles = glob
 module.exports = {
   entry: {
     ...entryFiles,
-    vendor: ['angular']
+    vendor: ['angular'],
+    webcomponents: './webcomponents/index.webcomponents.js'
   },
   output: {
     path: path.resolve(__dirname, 'build')
@@ -44,7 +43,7 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|webcomponents/,
         use: {
           loader: 'eslint-loader',
           options: {
@@ -56,7 +55,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|webcomponents/,
         use: 'babel-loader'
       },
       {
@@ -130,7 +129,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['build']),
     new DotEnv(),
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new BundleAnalyzerPlugin({
       openAnalyzer: false
