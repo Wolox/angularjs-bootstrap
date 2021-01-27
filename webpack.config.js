@@ -3,9 +3,9 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const DotEnv = require('dotenv-webpack');
-const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const glob = require('glob');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const entryFiles = glob
   .sync('./src/**/*.js')
@@ -13,6 +13,12 @@ const entryFiles = glob
     (entries, entryFile) => Object.assign(entries, { [path.parse(entryFile).name]: entryFile }),
     {}
   );
+
+const eslintOptions = {
+  cache: true,
+  emitError: true,
+  emitWarning: true
+};
 
 module.exports = {
   entry: {
@@ -41,21 +47,8 @@ module.exports = {
         loader: 'pug-loader'
       },
       {
-        enforce: 'pre',
         test: /\.js$/,
-        exclude: /node_modules|webcomponents/,
-        use: {
-          loader: 'eslint-loader',
-          options: {
-            cache: true,
-            emitError: true,
-            emitWarning: true
-          }
-        }
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules|webcomponents/,
+        exclude: /node_modules/,
         use: 'babel-loader'
       },
       {
@@ -74,16 +67,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie <9'
-                  ],
-                  flexbox: 'no-2009'
-                })
+                require('postcss-flexbugs-fixes')
               ]
             }
           },
@@ -105,16 +89,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie <9'
-                  ],
-                  flexbox: 'no-2009'
-                })
+                require('postcss-flexbugs-fixes')
               ]
             }
           }
@@ -137,7 +112,8 @@ module.exports = {
       title: 'Front-End Bootstrap',
       template: './src/views/index/index.pug',
       filename: 'index.html'
-    })
+    }),
+    new ESLintPlugin(eslintOptions)
   ],
   devtool: 'eval',
   optimization: {
