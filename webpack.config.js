@@ -14,12 +14,6 @@ const entryFiles = glob
     {}
   );
 
-const eslintOptions = {
-  cache: true,
-  emitError: true,
-  emitWarning: true
-};
-
 module.exports = {
   entry: {
     ...entryFiles,
@@ -113,7 +107,11 @@ module.exports = {
       template: './src/views/index/index.pug',
       filename: 'index.html'
     }),
-    new ESLintPlugin(eslintOptions)
+    new ESLintPlugin({
+      cache: true,
+      emitError: true,
+      emitWarning: true
+    })
   ],
   devtool: 'eval',
   optimization: {
