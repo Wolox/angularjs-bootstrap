@@ -26,6 +26,7 @@ module.exports = {
   target: 'web',
   mode: 'development',
   devServer: {
+    clientLogLevel: 'error',
     contentBase: path.resolve(__dirname, 'build'),
     compress: true,
     port: 3000,
@@ -109,7 +110,6 @@ module.exports = {
     }),
     new ESLintPlugin({
       cache: true,
-      emitError: true,
       emitWarning: true
     })
   ],

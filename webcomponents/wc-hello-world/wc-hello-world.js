@@ -9,4 +9,5 @@ class HelloWorld extends LitElement {
   }
 }
 
+/* eslint-disable-next-line */
 customElements.define('wc-hello-world', HelloWorld);
