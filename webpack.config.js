@@ -1,13 +1,11 @@
-'use strict';
-
 const webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const DotEnv = require('dotenv-webpack');
-const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const glob = require('glob');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const entryFiles = glob
   .sync('./src/**/*.js')
@@ -19,7 +17,8 @@ const entryFiles = glob
 module.exports = {
   entry: {
     ...entryFiles,
-    vendor: ['angular']
+    vendor: ['angular'],
+    webcomponents: './webcomponents/index.webcomponents.js'
   },
   output: {
     path: path.resolve(__dirname, 'build')
@@ -27,6 +26,7 @@ module.exports = {
   target: 'web',
   mode: 'development',
   devServer: {
+    clientLogLevel: 'error',
     contentBase: path.resolve(__dirname, 'build'),
     compress: true,
     port: 3000,
@@ -40,19 +40,6 @@ module.exports = {
       {
         test: /\.pug$/,
         loader: 'pug-loader'
-      },
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'eslint-loader',
-          options: {
-            cache: true,
-            emitError: true,
-            emitWarning: true
-          }
-        }
       },
       {
         test: /\.js$/,
@@ -75,16 +62,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie <9'
-                  ],
-                  flexbox: 'no-2009'
-                })
+                require('postcss-flexbugs-fixes')
               ]
             }
           },
@@ -106,16 +84,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               plugins: () => [
-                require('postcss-flexbugs-fixes'),
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie <9'
-                  ],
-                  flexbox: 'no-2009'
-                })
+                require('postcss-flexbugs-fixes')
               ]
             }
           }
@@ -130,7 +99,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['build']),
     new DotEnv(),
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new BundleAnalyzerPlugin({
       openAnalyzer: false
@@ -139,6 +107,10 @@ module.exports = {
       title: 'Front-End Bootstrap',
       template: './src/views/index/index.pug',
       filename: 'index.html'
+    }),
+    new ESLintPlugin({
+      cache: true,
+      emitWarning: true
     })
   ],
   devtool: 'eval',
