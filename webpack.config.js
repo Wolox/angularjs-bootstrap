@@ -38,13 +38,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.pug$/,
-        loader: 'pug-loader'
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.html$/,
+        exclude: [/node_modules/],
+        use: 'html-loader'
       },
       {
         test: /\.scss$/,
@@ -105,7 +106,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'Front-End Bootstrap',
-      template: './src/views/index/index.pug',
+      template: './src/views/index/index.html',
       filename: 'index.html'
     }),
     new ESLintPlugin({
