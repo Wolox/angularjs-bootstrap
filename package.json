@@ -17,6 +17,11 @@
     "reports": "npm run code-quality-html-report && npm run code-quality-json-report",
     "build": "webpack --config webpack.config.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run style-lint"
+    }
+  },
   "cacheDirectories": [
     "node_modules"
   ],
