@@ -63,7 +63,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "backstopjs": "^3.9.2",
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.29.1",
     "complexity-report": "^2.0.0-alpha",
     "concurrent-transform": "^1.0.0",
     "connect-history-api-fallback": "^1.6.0",
