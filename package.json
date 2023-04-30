@@ -62,7 +62,7 @@
     "angular-translate": "^2.18.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
-    "backstopjs": "^3.9.2",
+    "backstopjs": "^6.2.1",
     "browser-sync": "^2.26.3",
     "complexity-report": "^2.0.0-alpha",
     "concurrent-transform": "^1.0.0",
